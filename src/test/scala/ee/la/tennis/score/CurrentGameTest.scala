@@ -77,7 +77,62 @@ class CurrentGameTest extends FlatSpec with Matchers {
 
   }
 
+  it should " be win after two added points for serving player on 40:40" in {
+    val game = CurrentGame()
+    val current = game.addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne)
 
+    current shouldBe a[EndedGame]
+
+    val currentGame = current.asInstanceOf[EndedGame]
+
+    val egame = currentGame.asInstanceOf[EndedGame]
+    egame.winner shouldBe PlayerOne
+
+
+  }
+
+
+  it should " be deuce after both added points  on 40:40" in {
+    val game = CurrentGame()
+    val current = game.addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo).asInstanceOf[CurrentGame].
+      addPoint(PlayerOne).asInstanceOf[CurrentGame].
+      addPoint(PlayerTwo)
+
+    current shouldBe a[CurrentGame]
+
+    val currentGame = current.asInstanceOf[CurrentGame]
+
+    currentGame.player1Score shouldBe `deuce`
+    currentGame.player2Score shouldBe `deuce`
+
+
+  }
+
+  it should " be adv:advOut after one point  on deuce " in {
+    val game = CurrentGame(`deuce`,`deuce`)
+    val current = game.addPoint(PlayerTwo)
+
+    current shouldBe a[CurrentGame]
+
+    val currentGame = current.asInstanceOf[CurrentGame]
+
+    currentGame.player1Score shouldBe `advOut`
+    currentGame.player2Score shouldBe `adv`
+
+
+  }
 
 
 }
