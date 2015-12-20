@@ -1,13 +1,32 @@
 package ee.la.tennis.score
 
-import ee.la.tennis.Player
+import ee.la.tennis.{PlayerTwo, PlayerOne, Player}
 
 
-sealed trait Game
+sealed trait Game{}
 
-case class CurrentCame(player1Score:Point,player2Score:Point) extends Game{
+case class CurrentGame(player1Score:Point=`0`, player2Score:Point=`0`) extends Game{
+
   def getScore = {
     (player1Score,player2Score)
+  }
+  def addPoint(player: Player)={
+    player match {
+      case PlayerOne => Point+(player1Score,player2Score) match {
+        case (`win`,`lose`) => EndedGame(player)
+        case (player1,player2) => CurrentGame(player1,player2)
+      }
+      case PlayerTwo => Point+(player2Score,player1Score) match {
+        case (`win`,`lose`) => EndedGame(player)
+        case (player2,player1) => CurrentGame(player1,player2)
+      }
+    }
+  }
+}
+
+case object CurrentGame{
+  def apply = {
+    new CurrentGame
   }
 }
 

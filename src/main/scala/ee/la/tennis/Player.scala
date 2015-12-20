@@ -2,7 +2,7 @@ package ee.la.tennis
 
 
 sealed trait Player {
-  val playername:String
+
 }
-case object PalyerOne
-case object PlayerTwo
+case object PlayerOne extends Player
+case object PlayerTwo extends Player
