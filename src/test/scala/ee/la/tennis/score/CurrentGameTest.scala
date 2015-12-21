@@ -14,8 +14,8 @@ class CurrentGameTest extends FlatSpec with Matchers {
 
     val currentGame = current.asInstanceOf[CurrentGame]
 
-    currentGame.player1Score shouldBe `15`
-    currentGame.player2Score shouldBe `0`
+    currentGame.player1Score shouldBe Point.`15`
+    currentGame.player2Score shouldBe Point.`0`
 
 
   }
@@ -28,8 +28,8 @@ class CurrentGameTest extends FlatSpec with Matchers {
 
     val currentGame = current.asInstanceOf[CurrentGame]
 
-    currentGame.player1Score shouldBe `15`
-    currentGame.player2Score shouldBe `30`
+    currentGame.player1Score shouldBe Point.`15`
+    currentGame.player2Score shouldBe Point.`30`
 
 
   }
@@ -71,8 +71,8 @@ class CurrentGameTest extends FlatSpec with Matchers {
 
     val currentGame = current.asInstanceOf[CurrentGame]
 
-    currentGame.player1Score shouldBe `adv`
-    currentGame.player2Score shouldBe `advOut`
+    currentGame.player1Score shouldBe Point.`adv`
+    currentGame.player2Score shouldBe Point.`advOut`
 
 
   }
@@ -114,22 +114,22 @@ class CurrentGameTest extends FlatSpec with Matchers {
 
     val currentGame = current.asInstanceOf[CurrentGame]
 
-    currentGame.player1Score shouldBe `deuce`
-    currentGame.player2Score shouldBe `deuce`
+    currentGame.player1Score shouldBe Point.`deuce`
+    currentGame.player2Score shouldBe Point.`deuce`
 
 
   }
 
   it should " be adv:advOut after one point  on deuce " in {
-    val game = CurrentGame(`deuce`,`deuce`)
+    val game = CurrentGame(Point.`deuce`,Point.`deuce`)
     val current = game.addPoint(PlayerTwo)
 
     current shouldBe a[CurrentGame]
 
     val currentGame = current.asInstanceOf[CurrentGame]
 
-    currentGame.player1Score shouldBe `advOut`
-    currentGame.player2Score shouldBe `adv`
+    currentGame.player1Score shouldBe Point.`advOut`
+    currentGame.player2Score shouldBe Point.`adv`
 
 
   }

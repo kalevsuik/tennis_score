@@ -15,8 +15,8 @@ class CurrentSetTest extends FlatSpec with Matchers {
     val currentSet = current.asInstanceOf[CurrentSet]
 
     currentSet.playedGames shouldBe Nil
-    currentSet.currentGame.player1Score shouldBe `15`
-    currentSet.currentGame.player2Score shouldBe `0`
+    currentSet.currentGame.player1Score shouldBe Point.`15`
+    currentSet.currentGame.player2Score shouldBe Point.`0`
 
 
   }
@@ -36,8 +36,8 @@ class CurrentSetTest extends FlatSpec with Matchers {
     currentSet.playedGames should not be Nil
     currentSet.playedGames.size shouldBe 1
     currentSet.playedGames should contain theSameElementsAs List(EndedGame(PlayerOne))
-    currentSet.currentGame.player1Score shouldBe `0`
-    currentSet.currentGame.player2Score shouldBe `0`
+    currentSet.currentGame.player1Score shouldBe Point.`0`
+    currentSet.currentGame.player2Score shouldBe Point.`0`
 
 
   }
